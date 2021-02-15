@@ -1,4 +1,4 @@
-package com.leodelmiro.casadocodigo.newAuthor;
+package com.leodelmiro.casadocodigo.newauthor;
 
 import org.springframework.util.Assert;
 
@@ -9,24 +9,29 @@ import javax.validation.constraints.Size;
 import java.time.Instant;
 
 @Entity
-@Table(name = "tb_autores")
+@Table(name = "tb_authors")
 public class Author {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
     private String name;
 
-    @NotBlank @Email
+    @NotBlank
+    @Email
+    @Column(unique = true)
     private String email;
 
-    @NotBlank @Size(max = 400)
+    @NotBlank
+    @Size(max = 400)
     private String description;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt = Instant.now();
 
+    @Deprecated
     public Author() {
 
     }

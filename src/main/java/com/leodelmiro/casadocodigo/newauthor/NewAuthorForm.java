@@ -1,4 +1,4 @@
-package com.leodelmiro.casadocodigo.newAuthor;
+package com.leodelmiro.casadocodigo.newauthor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,6 +23,9 @@ public class NewAuthorForm {
         this.description = description;
     }
 
+    public String getEmail() {
+        return email;
+    }
     public Author toModel() {
         return new Author(this.name, this.email, this.description);
     }
