@@ -1,10 +1,13 @@
 package com.leodelmiro.casadocodigo.newcategory;
 
+import com.leodelmiro.casadocodigo.validation.UniqueValue;
+
 import javax.validation.constraints.NotBlank;
 
 public class NewCategoryForm {
 
     @NotBlank
+    @UniqueValue(fieldName = "name", domainClass = Category.class)
     private String name;
 
     @Deprecated

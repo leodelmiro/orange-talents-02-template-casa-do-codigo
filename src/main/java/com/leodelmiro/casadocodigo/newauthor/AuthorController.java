@@ -16,14 +16,6 @@ public class AuthorController {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private DuplicatedEmailValidator duplicatedEmailValidator;
-
-    @InitBinder
-    void initDuplicatedEmailValidator(WebDataBinder binder){
-        binder.addValidators(duplicatedEmailValidator);
-    }
-
     @PostMapping
     @Transactional
     public AuthorDTO insert(@Valid @RequestBody NewAuthorForm newAuthorForm) {

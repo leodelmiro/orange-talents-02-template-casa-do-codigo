@@ -16,14 +16,6 @@ public class CategoryController {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private DuplicatedNameValidator duplicatedNameValidator;
-
-    @InitBinder
-    void initDuplicatedNameValidator(WebDataBinder binder) {
-        binder.addValidators(duplicatedNameValidator);
-    }
-
     @PostMapping
     @Transactional
     public CategoryDTO insert(@Valid @RequestBody NewCategoryForm newCategoryForm) {
