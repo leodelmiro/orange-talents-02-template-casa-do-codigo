@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-public class BookDTO {
+public class CreatedBookDTO {
 
     private Long id;
     private String title;
@@ -24,11 +24,11 @@ public class BookDTO {
     private Long categoryId;
 
     @Deprecated
-    public BookDTO() {
+    public CreatedBookDTO() {
 
     }
 
-    public BookDTO(Book entity) {
+    public CreatedBookDTO(Book entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.resume = entity.getResume();
