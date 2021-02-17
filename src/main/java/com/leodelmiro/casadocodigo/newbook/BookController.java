@@ -1,4 +1,4 @@
-package com.leodelmiro.casadocodigo.newcategory;
+package com.leodelmiro.casadocodigo.newbook;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,19 +11,19 @@ import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/books")
+public class BookController {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @PostMapping
     @Transactional
-    public CategoryDTO insert(@Valid @RequestBody NewCategoryForm newCategoryForm) {
-        Category newCategory = newCategoryForm.toModel();
+    public BookDTO insert(@Valid @RequestBody NewBookForm newBookForm) {
+        Book newBook = newBookForm.toModel(entityManager);
 
-        entityManager.persist(newCategory);
+        entityManager.persist(newBook);
 
-        return new CategoryDTO(newCategory);
+        return new BookDTO(newBook);
     }
 }
