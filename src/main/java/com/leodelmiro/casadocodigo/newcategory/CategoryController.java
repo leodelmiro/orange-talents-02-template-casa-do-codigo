@@ -19,11 +19,11 @@ public class CategoryController {
 
     @PostMapping
     @Transactional
-    public CategoryDTO insert(@Valid @RequestBody NewCategoryForm newCategoryForm) {
+    public CreatedCategoryResponse insert(@Valid @RequestBody NewCategoryForm newCategoryForm) {
         Category newCategory = newCategoryForm.toModel();
 
         entityManager.persist(newCategory);
 
-        return new CategoryDTO(newCategory);
+        return new CreatedCategoryResponse(newCategory);
     }
 }

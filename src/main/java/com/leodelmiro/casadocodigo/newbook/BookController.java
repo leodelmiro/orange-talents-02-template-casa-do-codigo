@@ -19,11 +19,11 @@ public class BookController {
 
     @PostMapping
     @Transactional
-    public CreatedBookDTO insert(@Valid @RequestBody NewBookForm newBookForm) {
+    public CreatedBookResponse insert(@Valid @RequestBody NewBookForm newBookForm) {
         Book newBook = newBookForm.toModel(entityManager);
 
         entityManager.persist(newBook);
 
-        return new CreatedBookDTO(newBook);
+        return new CreatedBookResponse(newBook);
     }
 }

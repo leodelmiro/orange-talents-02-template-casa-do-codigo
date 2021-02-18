@@ -2,12 +2,12 @@ package com.leodelmiro.casadocodigo.showbook;
 
 import com.leodelmiro.casadocodigo.newbook.Book;
 
-public class BookDTO {
+public class AllBooksResponse {
 
     private Long id;
     private String title;
 
-    public BookDTO(Book entity){
+    public AllBooksResponse(Book entity){
         this.id = entity.getId();
         this.title = entity.getTitle();
     }

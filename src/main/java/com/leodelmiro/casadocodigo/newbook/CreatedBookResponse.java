@@ -1,16 +1,10 @@
 package com.leodelmiro.casadocodigo.newbook;
 
-import com.leodelmiro.casadocodigo.newauthor.AuthorDTO;
-import com.leodelmiro.casadocodigo.newcategory.CategoryDTO;
-import com.leodelmiro.casadocodigo.validation.UniqueValue;
-
-import javax.persistence.Lob;
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-public class CreatedBookDTO {
+public class CreatedBookResponse {
 
     private Long id;
     private String title;
@@ -24,11 +18,11 @@ public class CreatedBookDTO {
     private Long categoryId;
 
     @Deprecated
-    public CreatedBookDTO() {
+    public CreatedBookResponse() {
 
     }
 
-    public CreatedBookDTO(Book entity) {
+    public CreatedBookResponse(Book entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.resume = entity.getResume();

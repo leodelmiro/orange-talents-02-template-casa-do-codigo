@@ -19,11 +19,11 @@ public class AuthorController {
 
     @PostMapping
     @Transactional
-    public AuthorDTO insert(@Valid @RequestBody NewAuthorForm newAuthorForm) {
+    public CreatedAuthorResponse insert(@Valid @RequestBody NewAuthorForm newAuthorForm) {
         Author newAuthor = newAuthorForm.toModel();
 
         entityManager.persist(newAuthor);
 
-        return new AuthorDTO(newAuthor);
+        return new CreatedAuthorResponse(newAuthor);
     }
 }

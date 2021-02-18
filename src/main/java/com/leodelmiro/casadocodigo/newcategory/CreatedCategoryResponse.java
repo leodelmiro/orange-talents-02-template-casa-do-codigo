@@ -1,11 +1,11 @@
 package com.leodelmiro.casadocodigo.newcategory;
 
-public class CategoryDTO {
+public class CreatedCategoryResponse {
 
     private Long id;
     private String name;
 
-    public CategoryDTO(Category entity) {
+    public CreatedCategoryResponse(Category entity) {
         this.id = entity.getId();
         this.name = entity.getName();
     }

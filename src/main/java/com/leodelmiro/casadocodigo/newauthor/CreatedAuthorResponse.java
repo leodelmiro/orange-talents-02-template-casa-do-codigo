@@ -2,7 +2,7 @@ package com.leodelmiro.casadocodigo.newauthor;
 
 import java.time.Instant;
 
-public class AuthorDTO {
+public class CreatedAuthorResponse {
 
     private Long id;
 
@@ -14,7 +14,7 @@ public class AuthorDTO {
 
     private Instant createdAt;
 
-    public AuthorDTO(Author entity) {
+    public CreatedAuthorResponse(Author entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.email = entity.getEmail();

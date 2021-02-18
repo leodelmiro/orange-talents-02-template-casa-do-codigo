@@ -9,7 +9,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +35,12 @@ public class ControllerExceptionError {
         });
 
         return fieldMessageDTOS;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResponseStatusException.class)
+    public StandardMessageErrorDTO notFound(ResponseStatusException exception, HttpServletRequest request) {
+        return new StandardMessageErrorDTO(Instant.now(), "Produto não encontrado", exception.getMessage(), request.getRequestURI());
     }
 
 }
