@@ -25,7 +25,7 @@ public class Book {
     @Size(max = 500)
     private String resume;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String summary;
 
     @NotNull

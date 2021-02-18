@@ -25,7 +25,6 @@ public class NewBookForm {
     @Size(max = 500)
     private String resume;
 
-    @Column(columnDefinition = "TEXT")
     private String summary;
 
     @NotNull

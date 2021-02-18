@@ -43,4 +43,10 @@ public class ControllerExceptionError {
         return new StandardMessageErrorDTO(Instant.now(), "Produto não encontrado", exception.getMessage(), request.getRequestURI());
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CountryStateAlreadyExistsException.class)
+    public FieldMessageDTO stateAlreadyExists(CountryStateAlreadyExistsException exception) {
+        return new FieldMessageDTO("name", exception.getMessage());
+    }
+
 }
