@@ -1,5 +1,7 @@
-package com.leodelmiro.casadocodigo.validation;
+package com.leodelmiro.casadocodigo.validation.exceptions;
 
+import com.leodelmiro.casadocodigo.validation.FieldMessageDTO;
+import com.leodelmiro.casadocodigo.validation.StandardMessageErrorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

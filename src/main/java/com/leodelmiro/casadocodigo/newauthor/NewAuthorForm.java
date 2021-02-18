@@ -1,8 +1,6 @@
 package com.leodelmiro.casadocodigo.newauthor;
 
-import com.leodelmiro.casadocodigo.newcategory.Category;
-import com.leodelmiro.casadocodigo.validation.UniqueValue;
-import org.springframework.beans.factory.annotation.Value;
+import com.leodelmiro.casadocodigo.validation.annotations.UniqueValue;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

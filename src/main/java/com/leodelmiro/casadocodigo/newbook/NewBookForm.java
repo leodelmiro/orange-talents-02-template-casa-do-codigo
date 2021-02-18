@@ -3,13 +3,11 @@ package com.leodelmiro.casadocodigo.newbook;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.leodelmiro.casadocodigo.newauthor.Author;
 import com.leodelmiro.casadocodigo.newcategory.Category;
-import com.leodelmiro.casadocodigo.validation.ExistsId;
-import com.leodelmiro.casadocodigo.validation.UniqueValue;
+import com.leodelmiro.casadocodigo.validation.annotations.ExistsId;
+import com.leodelmiro.casadocodigo.validation.annotations.UniqueValue;
 import org.springframework.util.Assert;
 
-import javax.persistence.Column;
 import javax.persistence.EntityManager;
-import javax.persistence.Lob;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -1,4 +1,6 @@
-package com.leodelmiro.casadocodigo.validation;
+package com.leodelmiro.casadocodigo.validation.annotations;
+
+import com.leodelmiro.casadocodigo.validation.validator.UniqueValueValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,12 +11,12 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Constraint(validatedBy = ExistsIdValidator.class)
+@Constraint(validatedBy = UniqueValueValidator.class)
 @Target(FIELD)
 @Retention(RUNTIME)
 @Documented
-public @interface ExistsId {
-    String message() default "Id inexistente";
+public @interface UniqueValue {
+    String message() default "Duplicated value field error";
 
     Class<?>[] groups() default {};
 

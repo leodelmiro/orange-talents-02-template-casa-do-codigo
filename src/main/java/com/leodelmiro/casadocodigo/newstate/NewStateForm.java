@@ -1,8 +1,8 @@
 package com.leodelmiro.casadocodigo.newstate;
 
 import com.leodelmiro.casadocodigo.newcountry.Country;
-import com.leodelmiro.casadocodigo.validation.ExistsId;
-import com.leodelmiro.casadocodigo.validation.UniqueCountryStateName;
+import com.leodelmiro.casadocodigo.validation.annotations.ExistsId;
+import com.leodelmiro.casadocodigo.validation.annotations.UniqueCountryStateName;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -38,7 +38,7 @@ public class NewStateForm {
     }
 
     public State toModel(EntityManager entityManager) {
-        Country country = entityManager.find(Country.class, countryId);
+        @NotNull Country country = entityManager.find(Country.class, countryId);
 
         Assert.state(country != null, "Você está querendo cadastrar um estado passando um país que não existe no banco " + countryId);
 

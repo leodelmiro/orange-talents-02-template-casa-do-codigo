@@ -1,9 +1,9 @@
-package com.leodelmiro.casadocodigo.validation;
+package com.leodelmiro.casadocodigo.validation.validator;
 
+import com.leodelmiro.casadocodigo.validation.annotations.UniqueCountryStateName;
+import com.leodelmiro.casadocodigo.validation.exceptions.CountryStateAlreadyExistsException;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import javax.naming.directory.InvalidAttributeValueException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;

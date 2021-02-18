@@ -1,6 +1,6 @@
 package com.leodelmiro.casadocodigo.newcategory;
 
-import com.leodelmiro.casadocodigo.validation.UniqueValue;
+import com.leodelmiro.casadocodigo.validation.annotations.UniqueValue;
 
 import javax.validation.constraints.NotBlank;
 
