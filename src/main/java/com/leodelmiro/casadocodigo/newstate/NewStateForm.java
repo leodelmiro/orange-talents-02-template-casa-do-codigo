@@ -2,14 +2,14 @@ package com.leodelmiro.casadocodigo.newstate;
 
 import com.leodelmiro.casadocodigo.newcountry.Country;
 import com.leodelmiro.casadocodigo.validation.annotations.ExistsId;
-import com.leodelmiro.casadocodigo.validation.annotations.UniqueCountryStateName;
+import com.leodelmiro.casadocodigo.validation.annotations.UniqueCountryStateField;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@UniqueCountryStateName(attributeField = "name", domainClass = State.class, message = "UniqueCountryStateName.newStateForm")
+@UniqueCountryStateField(stateAttribute = "name", countryField = "countryId", domainClass = State.class, message = "{UniqueCountryStateName.newStateForm}")
 public class NewStateForm {
 
     @NotBlank
@@ -45,9 +45,4 @@ public class NewStateForm {
         return new State(name, country);
     }
 
-    @Override
-    public String toString() {
-        return "name='" + name + '\'' +
-                ", countryId=" + countryId;
-    }
 }
