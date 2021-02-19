@@ -8,7 +8,7 @@ import com.leodelmiro.casadocodigo.validation.annotations.ExistsId;
 import com.leodelmiro.casadocodigo.validation.annotations.UniqueValue;
 import org.springframework.util.Assert;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -54,7 +54,7 @@ public class NewClientForm {
     private String phoneNumber;
 
     @Deprecated
-    public NewClientForm(){
+    public NewClientForm() {
 
     }
 

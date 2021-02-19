@@ -4,6 +4,7 @@ import com.leodelmiro.casadocodigo.newcountry.Country;
 import com.leodelmiro.casadocodigo.newstate.State;
 import com.leodelmiro.casadocodigo.validation.annotations.CEP;
 import com.leodelmiro.casadocodigo.validation.annotations.CpfOrCnpj;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -60,7 +61,7 @@ public class Client {
     private String phoneNumber;
 
     @Deprecated
-    public Client(){
+    public Client() {
 
     }
 
@@ -98,6 +99,18 @@ public class Client {
                   @NotBlank @CEP String postalCode,
                   @NotNull Country country,
                   @NotBlank String phoneNumber) {
+
+        Assert.hasLength(email, "Email é obrigatório!");
+        Assert.hasLength(name, "Nome é obrigatório!");
+        Assert.hasLength(surname, "Sobrenome é obrigatório!");
+        Assert.hasLength(document, "Documento é obrigatório!");
+        Assert.hasLength(address, "O endereço é obrigatório!");
+        Assert.hasLength(addressComplement, "O complemento de endereço é obrigatório");
+        Assert.hasLength(city, "Cidade é obrigatório");
+        Assert.hasLength(postalCode, "CEP é obrigatório!");
+        Assert.notNull(country, "País é obrigatório!");
+        Assert.hasLength(phoneNumber, "Número de telefone é obrigatório!");
+
         this.email = email;
         this.name = name;
         this.surname = surname;
