@@ -6,7 +6,7 @@ import com.leodelmiro.casadocodigo.validation.annotations.CEP;
 import com.leodelmiro.casadocodigo.validation.annotations.CpfOrCnpj;
 import com.leodelmiro.casadocodigo.validation.annotations.ExistsId;
 import com.leodelmiro.casadocodigo.validation.annotations.UniqueValue;
-import org.springframework.util.Assert;
+import com.leodelmiro.casadocodigo.validation.exceptions.IllegalCountryStateException;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.Email;
@@ -61,7 +61,7 @@ public class NewClientForm {
     public NewClientForm(@NotBlank @Email String email,
                          @NotBlank String name,
                          @NotBlank String surname,
-                         @NotBlank @CpfOrCnpj String document,
+                         @NotBlank String document,
                          @NotBlank String address,
                          @NotBlank String addressComplement,
                          @NotBlank String city,
@@ -78,28 +78,6 @@ public class NewClientForm {
         this.city = city;
         this.postalCode = postalCode;
         this.stateId = stateId;
-        this.countryId = countryId;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public NewClientForm(@NotBlank @Email String email,
-                         @NotBlank String name,
-                         @NotBlank String surname,
-                         @NotBlank @CpfOrCnpj String document,
-                         @NotBlank String address,
-                         @NotBlank String addressComplement,
-                         @NotBlank String city,
-                         @NotBlank @CEP String postalCode,
-                         @NotBlank Long countryId,
-                         @NotBlank String phoneNumber) {
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.document = document;
-        this.address = address;
-        this.addressComplement = addressComplement;
-        this.city = city;
-        this.postalCode = postalCode;
         this.countryId = countryId;
         this.phoneNumber = phoneNumber;
     }
@@ -150,23 +128,21 @@ public class NewClientForm {
 
     public Client toModel(EntityManager entityManager) {
         State state = null;
-        Country country = null;
+        Country country = entityManager.find(Country.class, countryId);
+
+        if (country.hasState() && stateId == null) {
+            throw new IllegalCountryStateException("Existe estado nesse país.");
+        }
 
         if (stateId != null) {
             state = entityManager.find(State.class, stateId);
-            Assert.state(state != null, "Você está querendo cadastrar um cliente passando um estado inválido " + stateId);
-        } else {
-            country = entityManager.find(Country.class, countryId);
-            Assert.state(country != null, "Você está querendo cadastrar um cliente passando um país inválido " + countryId);
-        }
 
-        if (state != null) {
-            return new Client(this.email, this.name, this.surname, this.document, this.address, this.addressComplement,
-                    this.city, this.postalCode, state, state.getCountry(), this.phoneNumber);
+            if (!state.belongsTo(countryId)) {
+                throw new IllegalCountryStateException("Esse estado não pertence a esse país");
+            }
         }
 
         return new Client(this.email, this.name, this.surname, this.document, this.address, this.addressComplement,
-                this.city, this.postalCode, country, this.phoneNumber);
+                this.city, this.postalCode, state, country, this.phoneNumber);
     }
-
 }

@@ -51,4 +51,10 @@ public class ControllerExceptionError {
         return new FieldMessageDTO("name", exception.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalCountryStateException.class)
+    public FieldMessageDTO countryHasState(IllegalCountryStateException exception) {
+        return new FieldMessageDTO("state", exception.getMessage());
+    }
+
 }

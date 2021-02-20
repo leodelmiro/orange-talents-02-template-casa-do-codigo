@@ -48,4 +48,7 @@ public class State {
         return country;
     }
 
+    public boolean belongsTo(Long countryId) {
+        return country.getId().equals(countryId);
+    }
 }

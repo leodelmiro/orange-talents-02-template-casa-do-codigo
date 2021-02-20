@@ -3,7 +3,6 @@ package com.leodelmiro.casadocodigo.newclient;
 import com.leodelmiro.casadocodigo.newcountry.Country;
 import com.leodelmiro.casadocodigo.newstate.State;
 import com.leodelmiro.casadocodigo.validation.annotations.CEP;
-import com.leodelmiro.casadocodigo.validation.annotations.CpfOrCnpj;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -31,7 +30,6 @@ public class Client {
     private String surname;
 
     @NotBlank
-    @CpfOrCnpj
     @Column(unique = true)
     private String document;
 
@@ -68,35 +66,12 @@ public class Client {
     public Client(@NotBlank @Email String email,
                   @NotBlank String name,
                   @NotBlank String surname,
-                  @NotBlank @CpfOrCnpj String document,
+                  @NotBlank String document,
                   @NotBlank String address,
                   @NotBlank String addressComplement,
                   @NotBlank String city,
                   @NotBlank @CEP String postalCode,
                   State state,
-                  @NotNull Country country,
-                  @NotBlank String phoneNumber) {
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.document = document;
-        this.address = address;
-        this.addressComplement = addressComplement;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.state = state;
-        this.country = country;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Client(@NotBlank @Email String email,
-                  @NotBlank String name,
-                  @NotBlank String surname,
-                  @NotBlank @CpfOrCnpj String document,
-                  @NotBlank String address,
-                  @NotBlank String addressComplement,
-                  @NotBlank String city,
-                  @NotBlank @CEP String postalCode,
                   @NotNull Country country,
                   @NotBlank String phoneNumber) {
 
@@ -111,6 +86,7 @@ public class Client {
         Assert.notNull(country, "País é obrigatório!");
         Assert.hasLength(phoneNumber, "Número de telefone é obrigatório!");
 
+
         this.email = email;
         this.name = name;
         this.surname = surname;
@@ -119,6 +95,7 @@ public class Client {
         this.addressComplement = addressComplement;
         this.city = city;
         this.postalCode = postalCode;
+        this.state = state;
         this.country = country;
         this.phoneNumber = phoneNumber;
     }
